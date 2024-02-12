@@ -3,19 +3,13 @@ var windowPresenterRight;
 
 window.addEventListener("load", OnStartup, false);
 function OnStartup() {
-  windowPresenterLeft = new GameUnitCardWindowPresenter(
-    $("#battle-unit-card-window-left"),
-    "left"
-  );
-  windowPresenterRight = new GameUnitCardWindowPresenter(
-    $("#battle-unit-card-window-right"),
-    "right"
-  );
+  windowPresenterLeft = new GameUnitCardWindowPresenter($("#battle-unit-card-window-left"), "left");
+  windowPresenterRight = new GameUnitCardWindowPresenter($("#battle-unit-card-window-right"), "right");
 
   // todo вызов Одного из Тестов для отображения в UI
   //TestArcher1();
-  TestDeadcountess1();
-  //TestArcher2();
+  //TestDeadcountess1();
+  TestArcher2();
 }
 
 // карта (конфиг) всех юнитов типа Лучник
@@ -100,13 +94,13 @@ function TestArcher2() {
     currentHealth: 30,
     health: 40,
     cooldown: 0, // !
-    effects: {
-      isOnFocus: false,
-      isOnBarrier: true, // todo баффы должны отображаться
-      isOnFreeze: true, // todo баффы должны отображаться
-      isOnPoison: true, // todo баффы должны отображаться
-      isOnArmor: true, // todo баффы должны отображаться
-    },
+    effects: [                                // Изменил свойство effects
+      { type: 'focus', isEnabled: false },
+      { type: 'barrier', isEnabled: true },
+      { type: 'freeze', isEnabled: true },
+      { type: 'poison', isEnabled: true },
+      { type: 'armor', isEnabled: true },
+    ]
   };
 
   windowPresenterLeft.Show(unit, unitCardArcher);
